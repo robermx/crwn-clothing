@@ -3,19 +3,22 @@ import {
   createAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth,
 } from "../../utils/firebase/firebas.utils";
-
-const defaultValues = {
-  displayName: "",
-  email: "",
-  password: "",
-  confirmPassword: "",
-};
+import Forminput from "../form-input/form-input.component";
+import { dataOptions, defaultValues } from "../../utils/common/catalogs";
+import "./sing-up-form.styles.scss";
 
 const SignUpForm = () => {
   const [formFields, setFormFields] = useState(defaultValues);
   console.log(formFields);
 
   const { displayName, email, password, confirmPassword } = formFields;
+
+  const dataInputOptions = dataOptions(
+    displayName,
+    email,
+    password,
+    confirmPassword
+  );
 
   const resertFormFields = () => {
     setFormFields(defaultValues);
@@ -52,40 +55,22 @@ const SignUpForm = () => {
   };
 
   return (
-    <div>
-      <h1>Sign up with your email and password</h1>
+    <div className="sign-up-container">
+      <h2>Bon't have an account?</h2>
+      <span>Sign up with your email and password</span>
       <form onSubmit={handleOnSubmit}>
-        <label>Display Name</label>
-        <input
-          type="text"
-          name="displayName"
-          value={displayName}
-          onChange={handleChange}
-        />
-
-        <label>Email</label>
-        <input
-          type="email"
-          name="email"
-          value={email}
-          onChange={handleChange}
-        />
-
-        <label>Password</label>
-        <input
-          type="password"
-          name="password"
-          value={password}
-          onChange={handleChange}
-        />
-
-        <label>Confirm Password</label>
-        <input
-          type="password"
-          name="confirmPassword"
-          value={confirmPassword}
-          onChange={handleChange}
-        />
+        {dataInputOptions.map((dataInput) => (
+          <Forminput
+            key={dataInput.id}
+            label={dataInput.label}
+            inputOptions={{
+              type: dataInput.type,
+              onChange: handleChange,
+              name: dataInput.name,
+              value: dataInput.value,
+            }}
+          />
+        ))}
 
         <button type="submit">Sign Up</button>
       </form>
