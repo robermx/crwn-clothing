@@ -4,17 +4,19 @@ import {
   createUserDocumentFromAuth,
 } from "../../utils/firebase/firebas.utils";
 import Forminput from "../form-input/form-input.component";
-import { dataOptions, defaultValues } from "../../utils/common/catalogs";
+import {
+  dataSignUpOptions,
+  defaultSignUpValues,
+} from "../../utils/common/catalogs";
 import "./sign-up-form.styles.scss";
 import ButtonComponent from "../button/button.component";
 
 const SignUpForm = () => {
-  const [formFields, setFormFields] = useState(defaultValues);
-  console.log(formFields);
+  const [formFields, setFormFields] = useState(defaultSignUpValues);
 
   const { displayName, email, password, confirmPassword } = formFields;
 
-  const dataInputOptions = dataOptions(
+  const dataInputOptions = dataSignUpOptions(
     displayName,
     email,
     password,
@@ -22,7 +24,7 @@ const SignUpForm = () => {
   );
 
   const resertFormFields = () => {
-    setFormFields(defaultValues);
+    setFormFields(defaultSignUpValues);
   };
 
   const handleChange = (event) => {
