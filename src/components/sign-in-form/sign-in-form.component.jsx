@@ -24,8 +24,18 @@ const SignInForm = () => {
   };
 
   const signInWithGoogle = async () => {
-    const { user } = await signWithGooglePopup();
-    await createUserDocumentFromAuth(user);
+    try {
+      const { user } = await signWithGooglePopup();
+      await createUserDocumentFromAuth(user);
+    } catch (error) {
+      switch (error.code) {
+        case "auth/popup-closed-by-user":
+          alert("You closed the popup window");
+          break;
+        default:
+          console.log(error);
+      }
+    }
   };
 
   const handleChange = (event) => {
@@ -83,7 +93,7 @@ const SignInForm = () => {
           <ButtonComponent
             onClick={signInWithGoogle}
             buttonType={"google"}
-            type="submit"
+            type="button"
           >
             Google Sign in
           </ButtonComponent>
