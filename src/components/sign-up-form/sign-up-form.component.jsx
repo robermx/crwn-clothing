@@ -5,7 +5,8 @@ import {
 } from "../../utils/firebase/firebas.utils";
 import Forminput from "../form-input/form-input.component";
 import { dataOptions, defaultValues } from "../../utils/common/catalogs";
-import "./sing-up-form.styles.scss";
+import "./sign-up-form.styles.scss";
+import ButtonComponent from "../button/button.component";
 
 const SignUpForm = () => {
   const [formFields, setFormFields] = useState(defaultValues);
@@ -56,7 +57,7 @@ const SignUpForm = () => {
 
   return (
     <div className="sign-up-container">
-      <h2>Bon't have an account?</h2>
+      <h2>Don't have an account?</h2>
       <span>Sign up with your email and password</span>
       <form onSubmit={handleOnSubmit}>
         {dataInputOptions.map((dataInput) => (
@@ -72,7 +73,7 @@ const SignUpForm = () => {
           />
         ))}
 
-        <button type="submit">Sign Up</button>
+        <ButtonComponent type="submit">Sign Up</ButtonComponent>
       </form>
     </div>
   );
