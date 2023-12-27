@@ -1,19 +1,29 @@
-import "./button.styles.scss";
+import { BaseButton, GoogleSignButton, InvertedButton } from "./button.styles";
 
-const BUTTON_TYPE_CLASSES = {
+export const BUTTON_TYPE_CLASSES = {
   google: "google-sign-in",
   inverted: "inverted",
 };
 
-const ButtonComponent = ({ children, buttonType, ...otherProps }) => {
-  return (
-    <button
-      className={`button-container ${BUTTON_TYPE_CLASSES[buttonType]}`}
-      {...otherProps}
-    >
-      {children}
-    </button>
-  );
+const getButton = (butonType = BUTTON_TYPE_CLASSES.base) => {
+  switch (butonType) {
+    case BUTTON_TYPE_CLASSES.base:
+      return BaseButton;
+
+    case BUTTON_TYPE_CLASSES.google:
+      return GoogleSignButton;
+
+    case BUTTON_TYPE_CLASSES.inverted:
+      return InvertedButton;
+
+    default:
+      console.error(`${butonType} is not avalible`);
+  }
 };
 
-export default ButtonComponent;
+const Button = ({ children, buttonType, ...otherProps }) => {
+  const CustomButtom = getButton(buttonType);
+  return <CustomButtom {...otherProps}>{children}</CustomButtom>;
+};
+
+export default Button;

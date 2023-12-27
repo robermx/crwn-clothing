@@ -9,7 +9,7 @@ import {
   defaultSignInValues,
 } from "../../utils/common/catalogs";
 import "./sign-in-form.styles.scss";
-import ButtonComponent from "../button/button.component";
+import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
 
 const SignInForm = () => {
   const [formFields, setFormFields] = useState(defaultSignInValues);
@@ -30,7 +30,7 @@ const SignInForm = () => {
           alert("You closed the popup window");
           break;
         default:
-          console.log(error);
+          console.error(error);
       }
     }
   };
@@ -58,9 +58,9 @@ const SignInForm = () => {
           alert("No user asociated with this email ");
           break;
         default:
-          console.log(error);
+          console.error(error);
       }
-      console.log(error);
+      console.error(error);
     }
   };
 
@@ -82,14 +82,14 @@ const SignInForm = () => {
           />
         ))}
         <div className="buttons-container">
-          <ButtonComponent type="submit">Sign In</ButtonComponent>
-          <ButtonComponent
+          <Button type="submit">Sign In</Button>
+          <Button
             onClick={signInWithGoogle}
-            buttonType={"google"}
-            type="button"
+            buttonType={BUTTON_TYPE_CLASSES.google}
+            type={"button"}
           >
             Google Sign in
-          </ButtonComponent>
+          </Button>
         </div>
       </form>
     </div>

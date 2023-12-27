@@ -9,7 +9,7 @@ import {
   defaultSignUpValues,
 } from "../../utils/common/catalogs";
 import "./sign-up-form.styles.scss";
-import ButtonComponent from "../button/button.component";
+import Button from "../button/button.component";
 
 const SignUpForm = () => {
   const [formFields, setFormFields] = useState(defaultSignUpValues);
@@ -52,7 +52,7 @@ const SignUpForm = () => {
       if (error.code === "auth/email-already-in-use") {
         alert("The email already exist");
       }
-      console.log("User creation encounted an error", error);
+      console.error("User creation encounted an error", error);
     }
   };
 
@@ -74,7 +74,7 @@ const SignUpForm = () => {
           />
         ))}
 
-        <ButtonComponent type="submit">Sign Up</ButtonComponent>
+        <Button type="submit">Sign Up</Button>
       </form>
     </div>
   );
