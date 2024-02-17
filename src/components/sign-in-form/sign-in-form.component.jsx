@@ -1,6 +1,6 @@
 import { useState } from "react";
 import {
-  signWithGooglePopup,
+  signinWithGooglePopup,
   signInAuthUserWithEmailAndPassword,
 } from "../../utils/firebase/firebas.utils";
 import Forminput from "../form-input/form-input.component";
@@ -23,7 +23,7 @@ const SignInForm = () => {
 
   const signInWithGoogle = async () => {
     try {
-      await signWithGooglePopup();
+      await signinWithGooglePopup();
     } catch (error) {
       switch (error.code) {
         case "auth/popup-closed-by-user":
@@ -73,12 +73,10 @@ const SignInForm = () => {
           <Forminput
             key={dataInput.id}
             label={dataInput.label}
-            inputOptions={{
-              type: dataInput.type,
-              onChange: handleChange,
-              name: dataInput.name,
-              value: dataInput.value,
-            }}
+            type={dataInput.type}
+            onChange={handleChange}
+            name={dataInput.name}
+            value={dataInput.value}
           />
         ))}
         <div className="buttons-container">

@@ -38,15 +38,17 @@ googleProvider.setCustomParameters({
 });
 
 export const auth = getAuth();
-export const signWithGooglePopup = () => signInWithPopup(auth, googleProvider);
-export const signWithGoogleRedirect = () =>
+export const signinWithGooglePopup = () =>
+  signInWithPopup(auth, googleProvider);
+export const signinWithGoogleRedirect = () =>
   signInWithRedirect(auth, googleProvider);
 
-export const db = getFirestore();
+export const db = getFirestore(firebaseApp);
 
 export const addCollectionAndDocuments = async (
   collectionKey,
   objectsToAdd
+  // field
 ) => {
   const collectionRef = collection(db, collectionKey);
   const batch = writeBatch(db);
@@ -95,6 +97,13 @@ export const createUserDocumentFromAuth = async (
     }
   }
   return userDocRef;
+};
+
+export const getUserData = async (userAuth) => {
+  if (!userAuth) return;
+  const userDocRef = doc(db, "users", userAuth.uid);
+  const userSnapshot = await getDoc(userDocRef);
+  return userSnapshot.data();
 };
 
 export const createAuthUserWithEmailAndPassword = async (email, password) => {
