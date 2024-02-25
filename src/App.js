@@ -9,7 +9,7 @@ import ShopComponent from "./routes/shop/shop.component";
 import Checkout from "./routes/checkout/checkout.component";
 import {
   createUserDocumentFromAuth,
-  getUserData,
+  // getUserData,
   onAuthStateChangedListener,
 } from "./utils/firebase/firebas.utils";
 import { setCurrentUser } from "./store/user/user.action";
@@ -20,23 +20,16 @@ const App = () => {
   useEffect(() => {
     const unsubscribe = onAuthStateChangedListener((user) => {
       if (user) {
-        const userData = createUserDocumentFromAuth(user);
-        setCurrentUser(userData);
-      }
-      setCurrentUser(user);
-    });
-    return unsubscribe;
-  }, []);
-
-  useEffect(() => {
-    const unsubscribe = onAuthStateChangedListener((user) => {
-      if (user) {
         createUserDocumentFromAuth(user);
       }
-      const userData = getUserData(user);
-      userData.then((data) => {
-        dispatch(setCurrentUser(data));
-      });
+
+      /** get registered data from firebase */
+      // getUserData(user).then((data) => {
+      //   dispatch(setCurrentUser(data));
+      // });
+
+      /** get all user data */
+      dispatch(setCurrentUser(user));
     });
     return unsubscribe;
   }, [dispatch]);
