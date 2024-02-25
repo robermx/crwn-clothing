@@ -65,10 +65,12 @@ const SignUpForm = () => {
           <Forminput
             key={dataInput.id}
             label={dataInput.label}
-            type={dataInput.type}
-            onChange={handleChange}
-            name={dataInput.name}
-            value={dataInput.value}
+            inputOptions={{
+              type: dataInput.type,
+              onChange: handleChange,
+              name: dataInput.name,
+              value: dataInput.value,
+            }}
           />
         ))}
 

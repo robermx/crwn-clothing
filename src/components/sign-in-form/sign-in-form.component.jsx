@@ -73,10 +73,12 @@ const SignInForm = () => {
           <Forminput
             key={dataInput.id}
             label={dataInput.label}
-            type={dataInput.type}
-            onChange={handleChange}
-            name={dataInput.name}
-            value={dataInput.value}
+            inputOptions={{
+              type: dataInput.type,
+              onChange: handleChange,
+              name: dataInput.name,
+              value: dataInput.value,
+            }}
           />
         ))}
         <div className="buttons-container">
