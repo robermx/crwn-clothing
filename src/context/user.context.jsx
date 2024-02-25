@@ -1,6 +1,7 @@
 import { createContext, useEffect, useReducer } from "react";
 import {
   createUserDocumentFromAuth,
+  // getUserData,
   onAuthStateChangedListener,
 } from "../utils/firebase/firebas.utils";
 import { createAction } from "../utils/reducer/reducer.utils";
@@ -52,5 +53,6 @@ export const UserProvider = ({ children }) => {
     });
     return unsubscribe;
   }, []);
+
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };

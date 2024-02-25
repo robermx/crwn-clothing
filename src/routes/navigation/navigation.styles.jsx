@@ -27,3 +27,8 @@ export const NavLink = styled(Link)`
   padding: 10px 15px;
   cursor: pointer;
 `;
+
+export const LoggedUser = styled.p`
+  font-weight: 700;
+  margin-right: 1rem;
+`;
